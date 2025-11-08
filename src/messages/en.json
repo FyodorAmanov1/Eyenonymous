@@ -1,0 +1,44 @@
+{
+  "nav.live": "Live",
+  "nav.events": "Events",
+  "nav.analytics": "Analytics",
+  "nav.admin": "Admin",
+
+  "topbar.jetson": "Jetson:",
+  "topbar.menu": "Menu",
+  "topbar.online": "Online",
+  "topbar.builtBy": "Built by: Firdavs • Pulin • Azizbek • Prithwis",
+
+  "sidebar.title": "EyeNonymous",
+  "sidebar.subtitle": "HackSeoul 2025",
+
+  "language.en": "English",
+  "language.ko": "한국어",
+  "language.change": "Change language",
+
+  "live.sceneSummary": "Scene summary",
+  "live.latestScene": "Latest scene",
+  "live.latestDetections": "Latest detections",
+  "live.noDetections": "No detections yet. Make Jetson POST to /api/detections.",
+
+  "events.title": "Events",
+  "events.time": "Time",
+  "events.device": "Device",
+  "events.scene": "Scene",
+  "events.labels": "Labels",
+
+  "analytics.title": "Analytics",
+  "analytics.totalDetections": "Total detections",
+  "analytics.devices": "Devices",
+  "analytics.topScene": "Top scene",
+  "analytics.noData": "no data",
+  "analytics.noScene": "no scene sent yet",
+  "analytics.topLabels": "Top labels",
+  "analytics.scenes": "Scenes",
+
+  "admin.title": "Admin / Device",
+  "admin.rtsp": "Jetson RTSP URL",
+  "admin.save": "Save"
+}
+
+

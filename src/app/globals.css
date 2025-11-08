@@ -2,25 +2,176 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: #f8fafc;      /* light surface */
+  --color-surface-2: #eef2f7;    /* light elevated surface */
+  --color-border: #d6dee6;       /* light border */
+  --color-muted: #64748b;        /* light muted text */
+  --color-accent: #0ea5e9;       /* accent */
+  --color-accent-ghost: color-mix(in oklab, var(--color-accent) 10%, transparent);
+  --color-positive: #10b981;     /* success */
+
+  --color-video-bg: #000000;
+
+  /* Animation tokens - GPU-friendly durations and easings */
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --easing-base: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
+
+/* Motion design: lightweight, GPU-friendly animations */
+@keyframes skeleton-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background-image: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--color-surface-2) 90%, transparent) 0%,
+    color-mix(in oklab, var(--color-surface-2) 90%, transparent) 30%,
+    color-mix(in oklab, var(--color-surface) 100%, transparent) 50%,
+    color-mix(in oklab, var(--color-surface-2) 90%, transparent) 70%,
+    color-mix(in oklab, var(--color-surface-2) 90%, transparent) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  will-change: background-position;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fadeIn var(--duration-base) var(--easing-base) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--duration-base) var(--easing-base) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-fast) var(--easing-smooth) forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-base {
+  transition-property: color, background-color, border-color, transform, opacity;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--easing-base);
+}
+
+.transition-fast {
+  transition-property: color, background-color, border-color, transform, opacity;
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--easing-base);
+}
+
+/* GPU-friendly hover effects */
+.hover-lift {
+  transition: transform var(--duration-base) var(--easing-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-scale {
+  transition: transform var(--duration-fast) var(--easing-smooth);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .animate-pulse-subtle,
+  .hover-lift,
+  .hover-scale {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Dark theme overrides (app-controlled; default remains light) */
+html[data-theme='dark'] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --color-surface: #111418;
+  --color-surface-2: #161a20;
+  --color-border: #2a2f3a;
+  --color-muted: #94a3b8;
+  --color-accent: #38bdf8;
+  --color-accent-ghost: color-mix(in oklab, var(--color-accent) 15%, transparent);
+  --color-positive: #34d399;
+  --color-video-bg: #000000;
+}
+
+/* Ensure token classes always map to CSS vars (extra safety across builds) */
+.bg-background { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-surface-2 { background-color: var(--color-surface-2); }
+.bg-video-bg { background-color: var(--color-video-bg); }
+.text-foreground { color: var(--color-foreground); }
+.text-muted { color: var(--color-muted); }
+.text-positive { color: var(--color-positive); }
+.border-border { border-color: var(--color-border); }
+
+/* Accent mappings and interactive helpers */
+.text-accent { color: var(--color-accent); }
+.border-accent { border-color: var(--color-accent); }
+.bg-accent { background-color: var(--color-accent); }
+
+/* Ghost accent background for hovers without heavy fill */
+.hover\:bg-accent-ghost:hover {
+  background-color: color-mix(in oklab, var(--color-accent) 14%, transparent);
+}
+.hover\:text-accent:hover { color: var(--color-accent); }
+.hover\:border-accent:hover { border-color: var(--color-accent); }

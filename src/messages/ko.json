@@ -1,0 +1,44 @@
+{
+  "nav.live": "라이브",
+  "nav.events": "이벤트",
+  "nav.analytics": "분석",
+  "nav.admin": "관리",
+
+  "topbar.jetson": "Jetson:",
+  "topbar.menu": "메뉴",
+  "topbar.online": "온라인",
+  "topbar.builtBy": "제작: Firdavs • Pulin • Azizbek • Prithwis",
+
+  "sidebar.title": "아이노니머스",
+  "sidebar.subtitle": "HackSeoul 2025",
+
+  "language.en": "English",
+  "language.ko": "한국어",
+  "language.change": "언어 변경",
+
+  "live.sceneSummary": "장면 요약",
+  "live.latestScene": "최근 장면",
+  "live.latestDetections": "최근 탐지",
+  "live.noDetections": "아직 탐지가 없습니다. Jetson에서 /api/detections 로 POST 하세요.",
+
+  "events.title": "이벤트",
+  "events.time": "시간",
+  "events.device": "장치",
+  "events.scene": "장면",
+  "events.labels": "라벨",
+
+  "analytics.title": "분석",
+  "analytics.totalDetections": "총 탐지 수",
+  "analytics.devices": "장치",
+  "analytics.topScene": "최고 장면",
+  "analytics.noData": "데이터 없음",
+  "analytics.noScene": "아직 장면이 전송되지 않았습니다",
+  "analytics.topLabels": "상위 라벨",
+  "analytics.scenes": "장면",
+
+  "admin.title": "관리 / 장치",
+  "admin.rtsp": "Jetson RTSP URL",
+  "admin.save": "저장"
+}
+
+
